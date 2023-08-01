@@ -1,4 +1,4 @@
--- 모든 제약 조건 비활성화
+-- 모든 제약 조건 비활성화(왜래키들로묶여있으면 테이블 지우기 복잡함)
 SET REFERENTIAL_INTEGRITY FALSE;
 truncate table user_tb;
 truncate table product_tb;
@@ -7,7 +7,7 @@ truncate table cart_tb;
 truncate table order_tb;
 truncate table item_tb;
 SET REFERENTIAL_INTEGRITY TRUE;
--- 모든 제약 조건 활성화
+-- 모든 제약 조건 활성화(다시 제약조건활성화)
 
 INSERT INTO user_tb (`id`,`email`,`password`,`username`, `roles`) VALUES ('1', 'ssarmango@nate.com', '{bcrypt}$2a$10$8H0OT8wgtALJkig6fmypi.Y7jzI5Y7W9PGgRKqnVeS2cLWGifwHF2', 'ssarmango', 'ROLE_USER');
 

@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureRestDocs(uriScheme = "http", uriHost = "localhost", uriPort = 8080)
 @ActiveProfiles("test")
-@Sql("classpath:db/teardown.sql")
+@Sql(value = "classpath:db/teardown.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class ProductRestControllerTest extends MyRestDoc {
@@ -23,10 +23,10 @@ public class ProductRestControllerTest extends MyRestDoc {
     @Test
     public void findAll_test() throws Exception {
         // given teardown.sql
-
+        Integer page=0;
         // when
         ResultActions resultActions = mvc.perform(
-                get("/products")
+                get("/products").param("page",page.toString())
         );
 
         // console
